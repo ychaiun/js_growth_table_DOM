@@ -31,7 +31,15 @@ function appendRow() {
 
   document.querySelector('.remove-row').disabled = false;
 
-  tbody.append(rows[0].cloneNode('deep'));
+  const newRow = rows[0].cloneNode(true);
+
+  newRow.querySelectorAll('td').forEach((td) => {
+    if (td.children.length === 0) {
+      td.textContent = '';
+    }
+  });
+
+  tbody.append(newRow);
 }
 
 function removeRow() {
@@ -43,7 +51,7 @@ function removeRow() {
 
   document.querySelector('.append-row').disabled = false;
 
-  tbody.removeChild(rows[0]);
+  tbody.removeChild(rows[rows.length - 1]);
 }
 
 function appendColumn() {
