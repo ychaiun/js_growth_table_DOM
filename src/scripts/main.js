@@ -33,6 +33,14 @@ function appendRow() {
 
   const newRow = rows[0].cloneNode(true);
 
+  newRow.querySelectorAll('input, select, textarea').forEach((elem) => {
+    if (elem.type === 'checkbox' || elem.type === 'radio') {
+      elem.checked = false;
+    } else {
+      elem.value = '';
+    }
+  });
+
   newRow.querySelectorAll('td').forEach((td) => {
     if (td.children.length === 0) {
       td.textContent = '';
